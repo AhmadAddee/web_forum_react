@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 function AddPost() {
   const [content, setContent] = useState("");
@@ -9,11 +10,12 @@ function AddPost() {
   const submitPost = (e) => {
     e.preventDefault();
 
+    let creator = localStorage.getItem("username");
     let post = {
-      creator: localStorage.getItem("username"),
+      creator: creator,
       content: content,
     };
-    fetch("http://localhost:8080/api/post", {
+    fetch("http://localhost:8080/post/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

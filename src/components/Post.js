@@ -10,13 +10,12 @@ export default class Post extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8080/api/posts")
+    fetch("http://localhost:8080/post/get-all")
       .then((response) => response.json())
       .then((data) => this.setState({ posts: data }));
   }
 
   render() {
-    /* <div><AddPost /></div> */
     return (
       <div>
         <h4>Posts</h4>

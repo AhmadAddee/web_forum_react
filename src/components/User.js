@@ -15,7 +15,7 @@ export default class User extends Component {
       },
       username: localStorage.getItem("username"),
       url:
-        "http://localhost:8080/api/user?username=" +
+        "http://localhost:8080/user/get-user?username=" +
         localStorage.getItem("username"),
     };
   }
@@ -25,11 +25,7 @@ export default class User extends Component {
       .then((response) => response.json())
       .then((data) => this.setState({ user: data }));
   }
-  /*
-{this.state.users.map((item) => (
-            <SingleUser key={item.id} item={item} />
-          ))}
-*/
+
   render() {
     return (
       <div>

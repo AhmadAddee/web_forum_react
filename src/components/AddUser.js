@@ -18,7 +18,7 @@ function AddUser() {
   const submitUser = async () => {
     //e.preventDefault();
 
-    const response = await axios.post("http://localhost:8080/api/user", {
+    const response = await axios.post("http://localhost:8080/user/add", {
       username: username,
       fullName: fullName,
       password: password,
@@ -27,26 +27,9 @@ function AddUser() {
 
     const { token } = response.data;
     setToken(token);
-    /*
-    let user = {
-      username: username,
-      fullName: fullName,
-      password: password,
-      age: age,
-    };
 
-    fetch("http://localhost:8080/api/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    }).then((response) => response.json());
-*/
-    console.log(response.data);
     history.push("/login");
     window.location.reload();
-    //onSubmit={submitUser}
   };
 
   return (

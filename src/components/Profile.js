@@ -6,6 +6,7 @@ import SingleUser from "./SingleUser";
 import SinglePost from "./SinglePost";
 
 function Profile() {
+  const history = useHistory();
   const [user, setUser] = useState({
     username: "",
     fullName: "",
@@ -15,7 +16,7 @@ function Profile() {
   const [message, setMessage] = useState("");
 
   let url =
-    "http://localhost:8080/api/user?username=" +
+    "http://localhost:8080/user/get-user?username=" +
     localStorage.getItem("messageReceiver");
 
   useEffect(() => {
@@ -25,15 +26,15 @@ function Profile() {
   }, [localStorage.getItem("messageReceiver")]);
 
   const onSendClicked = async () => {
-    let messUrl = "http://localhost:8080/api/message";
+    let messUrl = "http://localhost:8080/message/send";
     if (message !== "") {
       const result = await axios.post(messUrl, {
         sender: localStorage.getItem("username"),
         receiver: localStorage.getItem("messageReceiver"),
         content: message,
       });
-
-      console.log(result.data);
+      localStorage.setItem("messageReceiver", "");
+      history.push("/");
       window.location.reload();
     }
   };

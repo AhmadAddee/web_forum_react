@@ -15,7 +15,7 @@ function LogInPage() {
   const history = useHistory();
 
   const onLogInClicked = async () => {
-    const response = await axios.post("http://localhost:8080/api/login", {
+    const response = await axios.post("http://localhost:8080/user/login", {
       username: username,
       password: password,
     });

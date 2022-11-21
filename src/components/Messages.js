@@ -6,7 +6,7 @@ export default class Messages extends Component {
     super(props);
     this.state = {
       url:
-        "http://localhost:8080/api/messages?username=" +
+        "http://localhost:8080/message/inbox?username=" +
         localStorage.getItem("username"),
       messages: [],
     };

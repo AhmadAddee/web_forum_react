@@ -6,7 +6,7 @@ function SingleUser({ item }) {
   const [posts, setPosts] = useState([]);
 
   let url =
-    "http://localhost:8080/api/post?creator=" +
+    "http://localhost:8080/post/get-posts?creator=" +
     localStorage.getItem("username");
   useEffect(() => {
     fetch(url)

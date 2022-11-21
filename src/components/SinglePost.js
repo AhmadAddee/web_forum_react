@@ -10,7 +10,8 @@ function SinglePost({ item }) {
   const history = useHistory();
 
   const submitUser = async () => {
-    let urlQuery = "http://localhost:8080/api/user?username=" + item.creator;
+    let urlQuery =
+      "http://localhost:8080/user/get-user?username=" + item.creator;
 
     const response = await axios.get(urlQuery);
 
