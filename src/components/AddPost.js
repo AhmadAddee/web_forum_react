@@ -28,23 +28,31 @@ function AddPost() {
   };
 
   return (
-    <div>
-      <form onSubmit={submitPost}>
-        <div>
-          <div>
-            <input
-              placeholder="Placeholder"
+    <div className="row">
+      <form class="col s12" onSubmit={submitPost}>
+        <h4>Create Post</h4>
+        <div className="row">
+          <div className="input-field col s6">
+            <i class="material-icons prefix">mode_edit</i>
+            <textarea
+              placeholder="Content..."
               value={content}
               onChange={(event) => setContent(event.target.value)}
               type="text"
+              className="materialize-textarea"
             />
             <label htmlFor="content">Content</label>
           </div>
-          <div>
-            <button type="subnmit" name="action">
-              Submit
-            </button>
-          </div>
+        </div>
+        <div>
+          <button
+            className="btn waves-effect waves-light"
+            type="subnmit"
+            name="action"
+          >
+            <i className="material-icons right">send</i>
+            Post
+          </button>
         </div>
       </form>
     </div>

@@ -38,34 +38,57 @@ function LogInPage() {
   };
 
   return (
-    <div className="content-container">
-      <h1>Log In</h1>
-      {errorMessage && <div>{errorMessage}</div>}
-      <input
-        type="email"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="@something.com"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="password"
-      />
-      <hr />
-      <button disabled={!username || !password} onClick={onLogInClicked}>
-        Log In
-      </button>
-      <button>Forgot your password?</button>
-      <button
-        onClick={() => {
-          history.push("/signup");
-          window.location.reload();
-        }}
-      >
-        Don't have an acount? Sign Up
-      </button>
+    <div className="row">
+      <form className="col s12">
+        <h1>Log In</h1>
+        {errorMessage && <div>{errorMessage}</div>}
+        <div className="row">
+          <div className="input-field col s6">
+            <input
+              type="email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="@your-email.com"
+            />
+          </div>
+          <div className="input-field col s6">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="password"
+            />
+          </div>
+          <hr />
+          <div className="row center-align">
+            <button
+              className="btn waves-effect waves-light"
+              disabled={!username || !password}
+              onClick={onLogInClicked}
+            >
+              Log In
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+          <div className="row center-align">
+            <button className="btn waves-effect waves-light" disabled="true">
+              Forgot your password? <i class="material-icons right">send</i>{" "}
+            </button>
+          </div>
+          <div className="row center-align">
+            <button
+              onClick={() => {
+                history.push("/signup");
+                window.location.reload();
+              }}
+              className="btn waves-effect waves-light"
+            >
+              <i class="material-icons right">send</i>
+              Don't have an acount? Sign Up
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   );
 }

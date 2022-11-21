@@ -22,7 +22,9 @@ function LogOutPage() {
       {errorMessage && <div>{errorMessage}</div>}
 
       <hr />
-      <button onClick={onLogInClicked}>Yes!</button>
+      <button onClick={onLogInClicked} class="btn waves-effect waves-light">
+        Yes!
+      </button>
     </div>
   );
 }

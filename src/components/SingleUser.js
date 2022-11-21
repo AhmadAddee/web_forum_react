@@ -17,7 +17,11 @@ function SingleUser({ item }) {
   //if (posts.length !== 0) console.log(posts.length);
   return (
     <div>
-      <h4>{item.username}</h4>
+      <h4>
+        <i class="small material-icons">account_box</i>
+        {"   "}
+        {item.username}
+      </h4>
       <div>Full name: {item.fullName}</div>
       <div>Age: {item.age}</div>
       <div>

@@ -8,17 +8,20 @@ function SingleMessage({ item }) {
   const history = useHistory();
 
   return (
-    <div>
-      <div>
-        <div>
-          <div>
-            <br />
-            <span>{item.content}, </span>
-            <span>
-              from <b>{item.sender}</b>{" "}
-            </span>
+    <div className="row">
+      <div className="col s12 m6">
+        <div className="card blue-grey darken-1">
+          <div className="card-content white-text">
+            <div className="chip">
+              <img
+                src="https://thumbs.dreamstime.com/b/default-avatar-profile-flat-icon-social-media-user-vector-portrait-unknown-human-image-default-avatar-profile-flat-icon-184330869.jpg"
+                alt="Contact Person"
+              />
+              {item.sender}
+            </div>
+            <span className="card-title">{item.content}, </span>
           </div>
-          <div>
+          <div class="card-action">
             <span>{item.timeAgo}</span>
           </div>
         </div>

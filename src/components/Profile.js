@@ -40,28 +40,52 @@ function Profile() {
   };
 
   return (
-    <div>
-      <h4>{user.username}</h4>
-      <div>Full name: {user.fullName}</div>
-      <div>Age: {user.age}</div>
-      <div>
-        <p>Send a message</p>
-        <input
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Write a message..."
-        />
-        <button onClick={onSendClicked}>Send</button>
-      </div>
-      posts:
-      {user.postList.map((post) => (
-        <div>
-          <div>
-            <br />
-            <span>{post.content}, </span>
+    <div className="row">
+      <form className="col s12">
+        <div className="row">
+          <h4>{user.username}</h4>
+          <div>Full name: {user.fullName}</div>
+          <div>Age: {user.age}</div>
+          <div className="input-field col s6">
+            <i className="material-icons prefix">mode_edit</i>
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Write a message..."
+              className="materialize-textarea"
+            />
+            <label>Send a message</label>
+            <button
+              class="btn waves-effect waves-light"
+              onClick={onSendClicked}
+            >
+              Send
+              <i className="material-icons right">send</i>
+            </button>
           </div>
-          <div>
-            <span>{post.timeAgo}</span>
+        </div>
+      </form>
+      <b>posts:</b>
+      {user.postList.map((post) => (
+        <div className="row">
+          <div className="col s12 m6">
+            <div className="card blue-grey darken-1">
+              <div className="card-content white-text">
+                <div className="chip">
+                  <img
+                    src="https://thumbs.dreamstime.com/b/default-avatar-profile-flat-icon-social-media-user-vector-portrait-unknown-human-image-default-avatar-profile-flat-icon-184330869.jpg"
+                    alt="Contact Person"
+                  />
+                  {post.creator}
+                </div>
+
+                <br />
+                <span className="card-title">{post.content}, </span>
+                <div class="card-action">
+                  <span>{post.timeAgo}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       ))}

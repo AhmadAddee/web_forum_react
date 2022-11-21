@@ -20,25 +20,38 @@ function SinglePost({ item }) {
   };
 
   return (
-    <div>
-      <div>
-        <div>
-          <div>
+    <div className="row ">
+      <div className="col s12 m6">
+        <div className="card blue-grey darken-1">
+          <div className="card-content white-text">
+            <div className="chip">
+              <img
+                src="https://thumbs.dreamstime.com/b/default-avatar-profile-flat-icon-social-media-user-vector-portrait-unknown-human-image-default-avatar-profile-flat-icon-184330869.jpg"
+                alt="Contact Person"
+              />
+              {item.creator}
+            </div>
+
             <br />
-            <span>{item.content}, </span>
-            <b>
+            <span className="card-title">{item.content}, </span>
+
+            <div class="card-action">
               <button
                 onClick={() => {
-                  localStorage.setItem("messageReceiver", item.creator);
-                  history.push("/profile");
-                  window.location.reload();
+                  if (item.creator !== localStorage.getItem("username")) {
+                    localStorage.setItem("messageReceiver", item.creator);
+                    history.push("/profile");
+                    window.location.reload();
+                  }
                 }}
+                disabled={item.creator === localStorage.getItem("username")}
+                className="btn waves-effect waves-light"
+                hidden={item.creator === localStorage.getItem("username")}
               >
-                Created by {item.creator}{" "}
+                {item.creator}
+                <i class="material-icons right">send</i>
               </button>
-            </b>
-          </div>
-          <div>
+            </div>
             <span>{item.timeAgo}</span>
           </div>
         </div>

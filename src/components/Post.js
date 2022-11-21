@@ -20,7 +20,7 @@ export default class Post extends Component {
       <div>
         <h4>Posts</h4>
         {this.state.posts.map((item) => (
-          <div>
+          <div className="row">
             <SinglePost key={item.id} item={item} />
             <hr />
           </div>

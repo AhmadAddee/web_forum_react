@@ -6,30 +6,34 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="App">
+    <div className="container-fluid ">
       <nav>
-        <div>
-          <a href="/">Posts</a>
-        </div>
-        <div>
-          <a href="/users">Users</a>
-        </div>
-        <div>
-          <a href="/myinbox">Messages</a>
-        </div>
-        <div>
-          <a href="/addpost">Create post</a>
-        </div>
-        <div>
-          <a href="/">Search profile</a>
-        </div>
-        <div>
-          {localStorage.getItem("username") !== "" && (
-            <a href="/logout">Log out</a>
-          )}
+        <div className="nav-wrapper">
+          <a href="/" className="brand-logo">
+            PostGram
+          </a>
+          <ul id="nav-mobile" className="right hide-on-med-and-down">
+            <li>
+              <a href="/users">My Profile</a>
+            </li>
+            <li>
+              <a href="/myinbox">Messages</a>
+            </li>
+            <li>
+              <a href="/addpost">Create post</a>
+            </li>
+            <li>
+              <a href="/">Search profile</a>
+            </li>
+            <li>
+              {localStorage.getItem("username") !== "" && (
+                <a href="/logout">Log out</a>
+              )}
+            </li>
+          </ul>
         </div>
       </nav>
-      <div>
+      <div className="row">
         <Routes />
       </div>
     </div>
