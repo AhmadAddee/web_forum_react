@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SinglePost from "./SinglePost";
-import AddPost from "./AddPost";
+
 export default class Post extends Component {
   constructor(props) {
     super(props);
@@ -19,8 +19,8 @@ export default class Post extends Component {
     return (
       <div>
         <h4>Posts</h4>
-        {this.state.posts.map((item) => (
-          <div className="row">
+        {this.state.posts.reverse().map((item) => (
+          <div key={item.id} className="row">
             <SinglePost key={item.id} item={item} />
             <hr />
           </div>

@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { useToken } from "../authentication/useToken";
-import SingleUser from "./SingleUser";
-import SinglePost from "./SinglePost";
 
 function Profile() {
   const history = useHistory();
+  const [sender, setSender] = useState(localStorage.getItem("username"));
+  const [receiver, setReceiver] = useState(
+    localStorage.getItem("messageReceiver")
+  );
   const [user, setUser] = useState({
     username: "",
     fullName: "",
@@ -18,25 +19,26 @@ function Profile() {
   let url =
     "http://localhost:8080/user/get-user?username=" +
     localStorage.getItem("messageReceiver");
-
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
       .then(setUser);
   }, [localStorage.getItem("messageReceiver")]);
 
-  const onSendClicked = async () => {
+  const onSendClicked = async (e) => {
+    e.preventDefault();
+
     let messUrl = "http://localhost:8080/message/send";
-    if (message !== "") {
-      const result = await axios.post(messUrl, {
-        sender: localStorage.getItem("username"),
-        receiver: localStorage.getItem("messageReceiver"),
-        content: message,
-      });
-      localStorage.setItem("messageReceiver", "");
-      history.push("/");
-      window.location.reload();
-    }
+    const result = await axios.post(messUrl, {
+      sender: sender,
+      receiver: receiver,
+      content: message,
+    });
+    console.log(result.data);
+
+    localStorage.setItem("messageReceiver", "");
+    history.push("/");
+    window.location.reload();
   };
 
   return (
@@ -56,7 +58,8 @@ function Profile() {
             />
             <label>Send a message</label>
             <button
-              class="btn waves-effect waves-light"
+              name="action"
+              className="btn waves-effect waves-light"
               onClick={onSendClicked}
             >
               Send
@@ -67,7 +70,7 @@ function Profile() {
       </form>
       <b>posts:</b>
       {user.postList.map((post) => (
-        <div className="row">
+        <div className="row" key={post.id}>
           <div className="col s12 m6">
             <div className="card blue-grey darken-1">
               <div className="card-content white-text">
@@ -81,7 +84,7 @@ function Profile() {
 
                 <br />
                 <span className="card-title">{post.content}, </span>
-                <div class="card-action">
+                <div className="card-action">
                   <span>{post.timeAgo}</span>
                 </div>
               </div>

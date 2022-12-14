@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import SingleUser from "./SingleUser";
-import AddUser from "./AddUser";
 
 export default class User extends Component {
   constructor(props) {

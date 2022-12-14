@@ -2,28 +2,54 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useToken } from "../authentication/useToken";
+import { useLocalState } from "../authentication/useLocalState";
 
 function LogInPage() {
-  const [token, setToken] = useToken("");
+  const [token, setToken] = useToken("", "");
 
   const [errorMessage, setErrorMessage] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
+  const [jwt, setJwt] = useLocalState("", "jwt");
 
   localStorage.setItem("messageReceiver", "");
   const history = useHistory();
 
   const onLogInClicked = async () => {
-    const response = await axios.post("http://localhost:8080/user/login", {
+    const reqBody = {
       username: username,
       password: password,
-    });
+    };
 
-    setToken(response.data.username);
+    console.log(reqBody);
+    const response = await axios
+      .post("http://localhost:8080/token", {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "basic",
+        },
+        //body: JSON.stringify(reqBody),
+      })
+      .then((res) => {
+        //return res.status === 200
+        //? Promise.all([res.json(), res.headers])
+        //: Promise.reject("invalid login attempt");
+        console.log(res);
+      })
+      .then(([body, headers]) => {
+        //setJwt(headers.get("authorization"));
+        console.log(headers.get("authorization"));
+      })
+      .catch((message) => {
+        //alert(message);
+      });
+
+    //setToken(response.data.username);
     console.log("from login page, response.data.username and token");
-    console.log(response.data.username);
+    //console.log(response.data.username);
     console.log(token);
+    console.log(response.headers);
 
     if (
       response.data.username === username &&
@@ -63,16 +89,16 @@ function LogInPage() {
           <div className="row center-align">
             <button
               className="btn waves-effect waves-light"
-              disabled={!username || !password}
+              disabled={username && password ? false : true}
               onClick={onLogInClicked}
             >
               Log In
-              <i class="material-icons right">send</i>
+              <i className="material-icons right">send</i>
             </button>
           </div>
           <div className="row center-align">
-            <button className="btn waves-effect waves-light" disabled="true">
-              Forgot your password? <i class="material-icons right">send</i>{" "}
+            <button className="btn waves-effect waves-light" disabled={true}>
+              Forgot your password? <i className="material-icons right">send</i>{" "}
             </button>
           </div>
           <div className="row center-align">
@@ -83,7 +109,7 @@ function LogInPage() {
               }}
               className="btn waves-effect waves-light"
             >
-              <i class="material-icons right">send</i>
+              <i className="material-icons right">send</i>
               Don't have an acount? Sign Up
             </button>
           </div>

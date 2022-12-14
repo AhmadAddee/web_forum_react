@@ -21,7 +21,7 @@ function SingleMessage({ item }) {
             </div>
             <span className="card-title">{item.content}, </span>
           </div>
-          <div class="card-action">
+          <div className="card-action">
             <span>{item.timeAgo}</span>
           </div>
         </div>

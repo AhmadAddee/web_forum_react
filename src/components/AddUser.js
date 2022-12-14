@@ -39,24 +39,24 @@ function AddUser() {
 
         <div className="row">
           <div className="input-field col s6">
-            <i class="material-icons prefix">account_circle</i>
+            <i className="material-icons prefix">account_circle</i>
             <input
               placeholder="Username"
               value={username}
               onChange={(event) => setUsername(event.target.value)}
               type="text"
-              class="validate"
+              className="validate"
             />
             <label htmlFor="username">Username</label>
           </div>
           <div className="input-field col s6">
-            <i class="material-icons prefix">account_circle</i>
+            <i className="material-icons prefix">account_circle</i>
             <input
               placeholder="Full name"
               value={fullName}
               onChange={(event) => setFullName(event.target.value)}
               type="text"
-              class="validate"
+              className="validate"
             />
             <label htmlFor="fullName">Full Name</label>
           </div>
@@ -66,7 +66,7 @@ function AddUser() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               type="password"
-              class="validate"
+              className="validate"
             />
             <label htmlFor="password">Password</label>
           </div>
@@ -76,7 +76,7 @@ function AddUser() {
               value={confirmPassword}
               onChange={(event) => setConfirmPassword(event.target.value)}
               type="password"
-              class="validate"
+              className="validate"
             />
             <label htmlFor="confirmPassword">Confirm Password</label>
           </div>
@@ -86,7 +86,7 @@ function AddUser() {
               value={age}
               onChange={(event) => setAge(event.target.value)}
               type="text"
-              class="validate"
+              className="validate"
             />
             <label htmlFor="age">Age</label>
           </div>
@@ -103,17 +103,17 @@ function AddUser() {
                 password !== confirmPassword
               }
               onClick={submitUser}
-              class="btn waves-effect waves-light"
+              className="btn waves-effect waves-light"
             >
               Sign Up
-              <i class="material-icons right">send</i>
+              <i className="material-icons right">send</i>
             </button>
             <button
               onClick={() => {
                 history.push("/login");
                 window.location.reload();
               }}
-              class="btn waves-effect waves-light"
+              className="btn waves-effect waves-light"
             >
               Log In
             </button>

@@ -14,11 +14,10 @@ function SingleUser({ item }) {
       .then((data) => setPosts(data));
   }, [posts]);
 
-  //if (posts.length !== 0) console.log(posts.length);
   return (
     <div>
       <h4>
-        <i class="small material-icons">account_box</i>
+        <i className="small material-icons">account_box</i>
         {"   "}
         {item.username}
       </h4>
@@ -27,7 +26,7 @@ function SingleUser({ item }) {
       <div>
         posts:
         {posts.map((post) => (
-          <span>
+          <span key={post.id}>
             <SinglePost key={post.id} item={post} />
           </span>
         ))}
