@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useToken } from "../authentication/useToken";
 import { useLocalState } from "../authentication/useLocalState";
+import { useUser } from "../authentication/useUser";
 
 function LogInPage() {
   const [token, setToken] = useToken("", "");
@@ -22,35 +23,35 @@ function LogInPage() {
       password: password,
     };
 
-    console.log(reqBody);
-    const response = await axios
-      .post("http://localhost:8080/token", {
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "basic",
-        },
-        //body: JSON.stringify(reqBody),
-      })
+    //const response = await axios.post
+    fetch("api/auth/login", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "post",
+      body: JSON.stringify(reqBody),
+    })
       .then((res) => {
-        //return res.status === 200
-        //? Promise.all([res.json(), res.headers])
-        //: Promise.reject("invalid login attempt");
-        console.log(res);
+        return res.status === 200
+          ? Promise.all([res.json(), res.headers])
+          : Promise.reject("invalid login attempt");
+        //console.log(res);
       })
       .then(([body, headers]) => {
-        //setJwt(headers.get("authorization"));
-        console.log(headers.get("authorization"));
+        setJwt(headers.get("authorization"));
+        console.log(headers.get("Authorization"));
+        console.log(body);
       })
       .catch((message) => {
         //alert(message);
       });
 
     //setToken(response.data.username);
-    console.log("from login page, response.data.username and token");
+    //console.log("from login page, response.data.username and token");
     //console.log(response.data.username);
-    console.log(token);
-    console.log(response.headers);
-
+    //console.log(token);
+    //console.log(response.headers);
+    /*
     if (
       response.data.username === username &&
       response.data.password === password
@@ -61,6 +62,7 @@ function LogInPage() {
     } else {
       setErrorMessage("Something went bananas, try again!");
     }
+    */
   };
 
   return (

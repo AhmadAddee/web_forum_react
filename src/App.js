@@ -1,6 +1,7 @@
 import User from "./components/User";
 import Post from "./components/Post";
 import Routes from "./Routes";
+import { useUser } from "./authentication/useUser";
 
 import "./App.css";
 

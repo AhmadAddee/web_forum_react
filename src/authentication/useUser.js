@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import { useToken } from "./useToken";
+const userContext = createContext();
 
 export const useUser = () => {
   const [token] = useToken();
 
   const getPayloadFromToken = (token) => {
-    const encodedPayload = token.split(".")[1];
-    return JSON.parse(atob(encodedPayload));
+    const encodedPayload = token; //.split(".")[1];
+    console.log(encodedPayload);
+    return JSON.parse(encodedPayload);
   };
 
   const getToken = (token) => {
@@ -15,8 +17,8 @@ export const useUser = () => {
 
   const [user, setUser] = useState(() => {
     if (!token) return null;
-    //return getPayloadFromToken(token);
-    return getToken(token);
+    return getPayloadFromToken(token);
+    //return getToken(token);
   });
 
   useEffect(() => {
@@ -26,6 +28,8 @@ export const useUser = () => {
       setUser(getToken(token));
     }
   }, [token]);
+
+  console.log("Here in useUser", user);
 
   return user;
 };
