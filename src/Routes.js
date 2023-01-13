@@ -9,6 +9,8 @@ import AddPost from "./components/AddPost";
 import User from "./components/User";
 import LogOutPage from "./login/Logout";
 import Messages from "./components/Messages";
+import Container from "./components/container/Container";
+import Chart from "./components/chart/Chart";
 
 function Routes() {
   const [profileUser, setProfileUser] = useState("");
@@ -39,6 +41,12 @@ function Routes() {
         <PrivateRoute path="/myinbox">
           <Messages />
         </PrivateRoute>
+        <Route path="/whiteboard" exact>
+          <Container />
+        </Route>
+        <Route path="/chart">
+          <Chart />
+        </Route>
       </Switch>
     </Router>
   );

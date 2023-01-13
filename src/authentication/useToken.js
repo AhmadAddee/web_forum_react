@@ -2,11 +2,11 @@ import { useState } from "react";
 
 export const useToken = () => {
   const [token, setTokenInternal] = useState(() => {
-    return localStorage.getItem("jwt");
+    return localStorage.getItem("username");
   });
 
   const setToken = (newToken) => {
-    localStorage.setItem("jwt", newToken);
+    localStorage.setItem("username", newToken);
     setTokenInternal(newToken);
   };
 

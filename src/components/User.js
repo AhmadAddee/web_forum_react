@@ -13,14 +13,15 @@ export default class User extends Component {
         age: 0,
       },
       username: localStorage.getItem("username"),
-      url:
-        "http://localhost:8080/user/get-user?username=" +
-        localStorage.getItem("username"),
+      url: "http://localhost:8080/user/get-user?username=" + this.username,
     };
   }
 
   componentDidMount() {
-    fetch(this.state.url)
+    var usernamee = localStorage.getItem("username");
+    var ruli = "http://localhost:8080/user/get-user?username=" + usernamee;
+    console.log(ruli);
+    fetch(ruli)
       .then((response) => response.json())
       .then((data) => this.setState({ user: data }));
   }

@@ -27,6 +27,12 @@ function App() {
               <a href="/">Search profile</a>
             </li>
             <li>
+              <a href="/chart">Charts</a>
+            </li>
+            <li>
+              <a href="/whiteboard">White board</a>
+            </li>
+            <li>
               {localStorage.getItem("username") !== "" && (
                 <a href="/logout">Log out</a>
               )}

@@ -8,24 +8,23 @@ function AddPost() {
   const [content, setContent] = useState("");
   const [creator, setCreator] = useState(localStorage.getItem("username"));
   const history = useHistory();
-  var decode = jwt_decode(localStorage.getItem("jwt"));
-  console.log(decode.sub);
+  //var decode = jwt_decode(localStorage.getItem("jwt"));
+  //console.log(decode.sub);
 
   const submitPost = (e) => {
     e.preventDefault();
 
     let post = {
-      creator: decode.sub,
+      creator: localStorage.getItem("username"),
       content: content,
     };
 
-    fetch("post/create", {
+    fetch("http://localhost:8080/post/create", {
       method: "POST",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("jwt"),
-        "Content-Type": "application/json",
+      body: {
+        creator: localStorage.getItem("username"),
+        content: content,
       },
-      body: JSON.stringify(post),
     }).then((res) => {
       if (res.status === 201) {
         history.push("/");
