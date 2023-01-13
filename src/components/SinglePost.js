@@ -1,14 +1,7 @@
 import React from "react";
-import { useState } from "react";
-import SingleUser from "./SingleUser";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-// src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLl892U8nBz93LjRN9WQSs9w3tcvqm_rZpoqTV4aXbng&s"
-
 function SinglePost({ item }) {
-  const [user, setUser] = useState(null);
-
   const history = useHistory();
   /*
   const submitUser = async () => {

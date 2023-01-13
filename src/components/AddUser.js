@@ -5,7 +5,7 @@ import { useToken } from "../authentication/useToken";
 import axios from "axios";
 
 function AddUser() {
-  const [token, setToken] = useToken();
+  const [token, setToken] = useToken("");
 
   const [username, setUsername] = useState("");
   const [fullName, setFullName] = useState("");
@@ -25,8 +25,9 @@ function AddUser() {
       age: age,
     });
 
-    const { token } = response.data;
-    setToken(token);
+    const { token1 } = response.data;
+    setToken(token1);
+    console.log(token);
 
     history.push("/login");
     window.location.reload();

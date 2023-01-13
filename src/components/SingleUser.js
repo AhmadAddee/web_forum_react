@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
 import SinglePost from "./SinglePost";
 
 function SingleUser({ item }) {
@@ -12,7 +11,7 @@ function SingleUser({ item }) {
     fetch(url)
       .then((response) => response.json())
       .then((data) => setPosts(data));
-  }, [posts]);
+  }, [posts, url]);
 
   return (
     <div>

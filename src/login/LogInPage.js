@@ -1,12 +1,8 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
-import { useToken } from "../authentication/useToken";
-//import { useLocalState } from "../authentication/useLocalState";
-import { useUser } from "../authentication/useUser";
 
 function LogInPage() {
-  const [token, setToken] = useToken("");
+  //const [token, setToken] = useToken("");
 
   const [errorMessage, setErrorMessage] = useState("");
   const [username, setUsername] = useState("");
@@ -33,39 +29,10 @@ function LogInPage() {
       body: JSON.stringify(reqBody),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data)); /*
-      .then((res) => {
-        return res.status === 200
-          ? Promise.all([res.json(), res.headers])
-          : Promise.reject("invalid login attempt");
-        //console.log(res);
-      })
-      .then(([body, headers]) => {
-        //setJwt(headers.get("authorization"));
-        setToken();
-        console.log(headers.get("Authorization"));
-        console.log(body);
-      })
-      .catch((message) => {
-        //alert(message);
-      });*/
-    /*
-    setToken(response.data.username);
-    console.log("from login page, response.data.username and token");
-    console.log(response.data.username);
-    console.log(token);
-    console.log(response.headers);
-
-    if (
-      response.data.username === username &&
-      response.data.password === password
-    ) {
-      history.push("/");
-      setErrorMessage("Successfully logged in!");
-      window.location.reload();
-    } else {
-      setErrorMessage("Something went bananas, try again!");
-    }*/
+      .then((data) => console.log(data))
+      .catch((error) => {
+        setErrorMessage(error.message);
+      });
   };
 
   return (

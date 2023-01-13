@@ -1,6 +1,5 @@
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useToken } from "./useToken";
-const userContext = createContext();
 
 export const useUser = () => {
   const [token] = useToken();

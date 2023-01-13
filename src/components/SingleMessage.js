@@ -1,12 +1,6 @@
 import React from "react";
-import { useState } from "react";
-import SingleUser from "./SingleUser";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
 
 function SingleMessage({ item }) {
-  const history = useHistory();
-
   return (
     <div className="row">
       <div className="col s12 m6">

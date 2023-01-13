@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import SinglePost from "./SinglePost";
-import { useUser } from "../authentication/useUser";
 
 export default class Post extends Component {
   constructor(props) {

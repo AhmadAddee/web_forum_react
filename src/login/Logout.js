@@ -11,8 +11,10 @@ function LogOutPage() {
 
   const onLogInClicked = async () => {
     setToken("");
+    console.log(token);
     localStorage.setItem("messageReceiver", "");
     history.push("/login");
+    setErrorMessage("");
     window.location.reload();
   };
 

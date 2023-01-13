@@ -4,10 +4,9 @@ import axios from "axios";
 
 function Profile() {
   const history = useHistory();
-  const [sender, setSender] = useState(localStorage.getItem("username"));
-  const [receiver, setReceiver] = useState(
-    localStorage.getItem("messageReceiver")
-  );
+  const sender = localStorage.getItem("username");
+  const receiver = localStorage.getItem("messageReceiver");
+
   const [user, setUser] = useState({
     username: "",
     fullName: "",
@@ -23,7 +22,7 @@ function Profile() {
     fetch(url)
       .then((response) => response.json())
       .then(setUser);
-  }, [localStorage.getItem("messageReceiver")]);
+  }, [url]);
 
   const onSendClicked = async (e) => {
     e.preventDefault();

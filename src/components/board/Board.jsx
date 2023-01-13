@@ -1,15 +1,15 @@
 import React from "react";
-import io from "socket.io-client";
+//import io from "socket.io-client";
 
 import "./style.css";
 
 class Board extends React.Component {
   timeout;
-  socket = io.connect("http://localhost:3000");
-
+  //socket = io.connect("http://localhost:3000");
+  /*
   constructor(props) {
     super(props);
-
+    
     this.socket.on("canvas-data", function (data) {
       var root = this;
       var interval = setInterval(function () {
@@ -28,7 +28,9 @@ class Board extends React.Component {
         image.src = data;
       }, 200);
     });
+    
   }
+  */
 
   componentDidMount() {
     this.drawOnCanvas();
